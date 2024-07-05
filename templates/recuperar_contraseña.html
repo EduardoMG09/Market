@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Upii-Market/Recuperar contraseña</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />   
+        <link href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='reset.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='recuperar_contraseña.css')}}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    </head>
+    <main>
+        <body>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="btn-regresar">
+                            <button class="regresar"><i class="bi bi-arrow-left"></i></button>
+                        </div>
+                        <form action="/olvidecontraseña" class="form" method="POST">
+                            <div class="label_formulario">
+                                <div class="label_form">
+                                    <label for="">Correo electronico</label>
+                                </div>
+                                <div class="form_input">
+                                    <input type="email" name='email' placeholder="correo electronico">
+                                </div>
+                            </div>
+                            <div class="label_formulario">
+                                <div class="form_input form-token">
+                                    <button class="enviar-token">Solicitar token</button>
+                                </div>
+                            </div>
+                        </form>
+                        {% if mostrar_token %}
+                        <form action="/get_token" class="form" method="POST">
+                            <div class="label_formulario">
+                                <div class="label_form">
+                                    <label for="">Confirmar token</label>
+                                </div>
+                                <div class="form_input">
+                                    <input type="number" name='token' placeholder="token">
+                                </div>
+                            </div>
+                            <div class="label_formulario">
+                                <div class="form_input btn-recuperar">
+                                    <button class="Recuperar">Recuperar contraseña</button>
+                                </div>
+                            </div>
+                        </form>
+                        {% elif mostrar_form %}
+                        <form action="/reset_password/token" method="post">
+                            <div class="label_formulario">
+                                <div class="label_form">
+                                    <label for="">Confirmar correo electronico</label>
+                                </div>
+                                <div class="form_input">
+                                    <input type="email" name='correo' placeholder="contraseña" >
+                                </div>
+                            </div>
+                            <div class="label_formulario">
+                                <div class="label_form">
+                                    <label for="">Escribe tu nueva contraseña</label>
+                                </div>
+                                <div class="form_input">
+                                    <input type="password" name='new_password' placeholder="contraseña">
+                                </div>
+                            </div>
+                            
+                            <div class="label_formulario">
+                                <div class="form_input btn-recuperar">
+                                    <button class="Recuperar">Aceptar</button>
+                                </div>
+                            </div>
+                        </form>
+                        {% elif confirmacion %}
+                        <form>
+                            <div class="label_form">
+                                <label for="">¡Su contraseña se ha reestablecido!</label>
+                            </div>
+                        </form>
+                        {% endif %}
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-8">
+                        <div class="container-fluid d-flex justify-content-center align-items-center full-height side_right">
+                            <h1>Recuperar contraseña</h1>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <script src="{{ url_for('static', filename='recuperar_contraseña.js')}}"></script>
+        </body>
+    </main>
+</html>
